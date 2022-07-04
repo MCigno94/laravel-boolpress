@@ -1,15 +1,19 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
+// 0. If using a module system (e.g. via vue-cli), import Vue and VueRouter
+// and then call `Vue.use(VueRouter)`.
 
 // 1. Define route components.
 // These can be imported from other files
+import Home from "./Pages/Home";
+import About from "./Pages/About";
+import Posts from "./Pages/Posts";
+import Post from "./Pages/Post";
+import Contacts from "./Pages/Contacts";
+import NotFound from "./Pages/NotFound";
 
-import Home from './Pages/Home';
-import About from './Pages/About';
-import Posts from './Pages/Posts';
-import Post from './Pages/Post';
 
 // 2. Define some routes
 // Each route should map to a component. The "component" can
@@ -17,34 +21,46 @@ import Post from './Pages/Post';
 // `Vue.extend()`, or just a component options object.
 // We'll talk about nested routes later.
 const routes = [{
-        path: '/',
+        path: "/",
         name: 'home',
-        component: Home
+        component: Home,
     },
     {
-        path: '/about',
+        path: "/about",
         name: 'about',
-        component: About
+        component: About,
     },
     {
-        path: '/posts',
+        path: "/posts",
         name: 'posts',
-        component: Posts
+        component: Posts,
     },
     {
-        path: '/posts/:slug',
+        path: "/post/:slug",
         name: 'post',
-        component: Post
-    }
-
-]
+        component: Post,
+    },
+    {
+        path: "/contacts",
+        name: 'contacts',
+        component: Contacts,
+    },
+    {
+        path: "/*",
+        name: 'not-found',
+        component: NotFound,
+    },
+];
 
 // 3. Create the router instance and pass the `routes` option
 // You can pass in additional options here, but let's
 // keep it simple for now.
 const router = new VueRouter({
-    mode: 'history',
+    mode: "history",
     routes, // short for `routes: routes`
-})
+});
 
+// 4. Create and mount the root instance.
+// Make sure to inject the router with the router option to make the
+// whole app router-aware.
 export default router;

@@ -19,7 +19,8 @@ use Mockery\Generator\Parameter;
     return view('welcome');
 });
 */
-
+Route::get('contact-form', 'MessageController@show')->name('contact.form.index');
+Route::post('contact-form', 'MessageController@store');
 Auth::routes();
 
 
@@ -41,7 +42,11 @@ Route::middleware('auth')
     Route::resource('tags','TagController')->parameters([
         'tags' => 'tag:slug'
     ])->except(['show','create','edit']);
+    Route::resource('messages', 'MessageController');
+
 });
+
+
 
 /* DEVE SEMPRE ESSERE L'ULTIMA */
 Route::get("{any?}", function ()

@@ -140,7 +140,7 @@
 <script>
 import BannerComponent from "../components/BannerComponent.vue";
 export default {
-    name: "Posts",
+    name: "posts",
     components: {
     BannerComponent,
     },
@@ -160,8 +160,7 @@ export default {
                 }
             })
             .then((response) => {
-                //console.log(response);
-                //this.posts = response.data.data;
+                //console.log(response);                
                 this.postsResponse = response.data;
             })
             .catch(e => {

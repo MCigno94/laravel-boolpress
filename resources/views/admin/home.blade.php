@@ -15,7 +15,7 @@
                     @endif
 
                     <div>
-                        <a class="btn btn-primary" href="{{route('admin.posts.create')}}">Create New Post</a>
+                        <a class="btn btn-primary" href="{{route('admin.posts.index')}}">Create New Post</a>
                     </div>
                 </div>
             </div>

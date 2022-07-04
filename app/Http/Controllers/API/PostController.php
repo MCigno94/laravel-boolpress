@@ -3,20 +3,27 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::with(['tags', 'category', 'user'])->paginate();
-        return $posts;
+        return Post::with(['category', 'tags', 'user'])->orderByDesc('id')->paginate(9);
     }
-
-    public function show()
+    public function show($slug)
     {
-        $post = Post::with(['tags', 'category', 'user'])->where(['slug',$slug])->first();
-        return $post;
+        $post = Post::with(['category', 'tags', 'user'])->where('slug', $slug)->first();
+        if ($post) {
+            return $post;
+        } else {
+            return response()->json(
+                [
+                    'status_code' => 404,
+                    'status_message' => 'Page Not Found'
+                ]
+            );
+        }
     }
 }
